@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* 1. Reusable color tokens - Cardinal Hearts Palette */
+  --color-brand-background: #FDFCF8;
+  --color-brand-surface: #F9F6F0;
+  --color-brand-text: #2C2A29;
+  --color-brand-text-muted: #7A7875;
+  --color-brand-accent: #8C1515;
+  --color-brand-sage: #A3B5A6;
+  --color-brand-mist: #B8C7D1;
+  --color-brand-border: #EDE8E0;
+
+  /* 2. Typography System */
+  --font-sans: var(--font-inter), "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-playfair), "Georgia", serif;
+
+  /* 3. Shadow System */
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 15px rgba(163, 181, 166, 0.3);
+
+  /* 4. Animation Presets */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 4s ease-in-out infinite;
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* 5. Border Radius System (Soft & Calming) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadcn Variable Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Mapping brand colors to shadcn semantic tokens */
+  --background: #FDFCF8;
+  --foreground: #2C2A29;
+  --card: #F9F6F0;
+  --card-foreground: #2C2A29;
+  --popover: #FDFCF8;
+  --popover-foreground: #2C2A29;
+  
+  /* Primary interactions */
+  --primary: #8C1515;
+  --primary-foreground: #FDFCF8;
+  
+  /* Secondary / Calm elements */
+  --secondary: #A3B5A6;
+  --secondary-foreground: #FDFCF8;
+  
+  /* Muted surfaces */
+  --muted: #F9F6F0;
+  --muted-foreground: #7A7875;
+  
+  /* Accents */
+  --accent: #B8C7D1;
+  --accent-foreground: #2C2A29;
+  
+  /* Destructive */
+  --destructive: #8C1515;
+  --destructive-foreground: #FDFCF8;
+  
+  /* Borders and Inputs */
+  --border: #EDE8E0;
+  --input: #EDE8E0;
+  --ring: #A3B5A6;
+  
+  /* Base radius maps to 2xl for "rounded-2xl cards" */
+  --radius: 1.5rem; 
+}
+
+.dark {
+  /* Warm and soft dark mode based on the same hues */
+  --background: #232221;
+  --foreground: #FDFCF8;
+  --card: #2C2A29;
+  --card-foreground: #FDFCF8;
+  --popover: #232221;
+  --popover-foreground: #FDFCF8;
+  
+  --primary: #8C1515;
+  --primary-foreground: #FDFCF8;
+  
+  --secondary: #A3B5A6;
+  --secondary-foreground: #232221;
+  
+  --muted: #2C2A29;
+  --muted-foreground: #B8C7D1;
+  
+  --accent: #B8C7D1;
+  --accent-foreground: #232221;
+  
+  --destructive: #8C1515;
+  --destructive-foreground: #FDFCF8;
+  
+  --border: #3A3837;
+  --input: #3A3837;
+  --ring: #A3B5A6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-brand-sage selection:text-white transition-colors duration-300;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Global Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass-panel {
+    @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-soft;
+  }
+}
